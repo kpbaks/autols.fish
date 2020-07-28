@@ -8,7 +8,7 @@ function autols-toggle --description "toggle autols"
     else 
         switch $argv[1]
             case "on"
-                set --query _autols_toggle_status; or set --global _autols_toggle_status 
+                set --query _autols_toggle_status; or set -Ux _autols_toggle_status 
             case "off"
                 set --query _autols_toggle_status; and set --erase _autols_toggle_status
             case "-h"
