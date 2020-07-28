@@ -1,6 +1,8 @@
 function _autols --on-variable PWD
-    ls
+    set --query _autols_toggle_status; and ls
 end
+
+
 
 # function _autols --on-event fish_postexec
 #     set --query _autols_previous_dir; or set -g _autols_previous_dir (dirs)
