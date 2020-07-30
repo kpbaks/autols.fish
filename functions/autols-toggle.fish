@@ -9,11 +9,11 @@ function autols-toggle --description "toggle autols"
         switch $argv[1]
             case "on"
                 set --query _autols_toggle_status; or set -Ux _autols_toggle_status 
+                echo -e "\tautols has been turned on!"
             case "off"
                 set --query _autols_toggle_status; and set --erase _autols_toggle_status
-            case "-h"
-                echo "help message"
-            case "--help"
+                echo -e "\tautols has been turned off!"
+            case "-h" "--help"
                 echo "help message"
         end 
     end
