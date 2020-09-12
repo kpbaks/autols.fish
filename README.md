@@ -5,9 +5,7 @@ works with fish built-in `cd`, `cdh` and shell agnostic programs such as [zoxide
 
 Can be toggled on and off by using the provided helper function `autols-toggle [on|off]`
 
-[![asciicast](359379.svg)](https://asciinema.org/a/359379)
-
-
+[![asciicast](https://asciinema.org/a/359379.svg)](https://asciinema.org/a/359379)
 
 # Installation
 ## Using [Fisher](https://github.com/jorgebucaran/fisher)
