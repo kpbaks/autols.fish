@@ -5,6 +5,10 @@ works with fish built-in `cd`, `cdh` and shell agnostic programs such as [zoxide
 
 Can be toggled on and off by using the provided helper function `autols-toggle [on|off]`
 
+[![asciicast](359379.svg)](https://asciinema.org/a/359379)
+
+
+
 # Installation
 ## Using [Fisher](https://github.com/jorgebucaran/fisher)
 ```fish
@@ -23,5 +27,5 @@ do not prefer it, so if someone know of there is a better way please send a pull
 it is called when starting the interactive shell. This conflicts with the users `fish_greeting.fish`. In a previous implementation I used an
 [event handler](https://fishshell.com/docs/current/cmds/function), that was invoked each time the fish builtin event `fish_postexec` is emitted, and then checked if current directory had been updated since the last emitted event. I might be able to fix this "bug", by using this implementation route instead
 but I have not yet tried it.~~
-- Add asciinema gif, to show functionality of plugin.
+- ~~Add asciinema gif, to show functionality of plugin.~~
 - Add rules for which directories autols should be applicable for e.g. only invoke in directories containing `.git` 
