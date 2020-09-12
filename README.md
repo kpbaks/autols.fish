@@ -27,3 +27,4 @@ it is called when starting the interactive shell. This conflicts with the users 
 but I have not yet tried it.~~
 - ~~Add asciinema gif, to show functionality of plugin.~~
 - Add rules for which directories autols should be applicable for e.g. only invoke in directories containing `.git` 
+- Add a "How it works" section to the readme
