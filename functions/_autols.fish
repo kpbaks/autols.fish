@@ -7,9 +7,9 @@ function _autols --on-event fish_postexec
     # '_autols_toggle_status' has been defined or not. It is the variable
     # which control whether or not autols is toggled on or off. It
     # can be set and unset respectively with autols_toggle [on | off].
-    # If set, then simply return since that is interpreted as autols.fish
+    # If not set, then simply return since that is interpreted as autols.fish
     # being toggled off.
-    set --query _autols_toggle_status; and return 
+    set --query _autols_toggle_status; or return 
     # 
     set --query _autols_previous_dir; or set -g _autols_previous_dir (dirs)
     # set --query _autols_current_dir; or set -g _autols_current_dir (dirs)
