@@ -3,6 +3,10 @@
 # end
 
 function _autols --on-event fish_postexec
+    set --query _autols_previous_dir; or set -g _autols_previous_dir (dirs)
+
+    set -g _autols_current_dir (dirs)
+
     # query ~/.config/fish/fish_variables to see if the environment variable
     # '_autols_toggle_status' has been defined or not. It is the variable
     # which control whether or not autols is toggled on or off. It
@@ -10,11 +14,6 @@ function _autols --on-event fish_postexec
     # If not set, then simply return since that is interpreted as autols.fish
     # being toggled off.
     set --query _autols_toggle_status; or return 
-    # 
-    set --query _autols_previous_dir; or set -g _autols_previous_dir (dirs)
-    # set --query _autols_current_dir; or set -g _autols_current_dir (dirs)
-
-    set -g _autols_current_dir (dirs)
     
     # Test if the previous directory is equal to the current one, which is
     # set with the end of a fish prompt.
