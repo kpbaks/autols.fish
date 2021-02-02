@@ -10,7 +10,7 @@ Can be toggled on and off by using the provided helper function `autols-toggle [
 # Installation
 ## Using [Fisher](https://github.com/jorgebucaran/fisher)
 ```fish
-fisher add Kristoffer-PBS/autols-fish
+fisher install Kristoffer-PBS/autols-fish
 ```
 
 ## Inspiration
