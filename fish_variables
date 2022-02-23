@@ -1,0 +1,2 @@
+SETUVAR autols_command:ll
+SETUVAR _fish_abbr_als:autols\x2dtoggle

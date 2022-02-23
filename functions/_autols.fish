@@ -22,7 +22,11 @@ function _autols --on-event fish_postexec
         # If not set, then simply return since that is interpreted as autols.fish
         # being toggled off.
         if set --query _autols_toggle_status 
-            ls
+            if set --query autols_command
+				$autols_command
+			else
+				ls
+			end
         end
     end
 end

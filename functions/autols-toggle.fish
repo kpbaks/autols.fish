@@ -6,9 +6,11 @@ function autols-toggle --description "toggle autols"
     set argv_count (count $argv)
     if test $argv_count -eq 0
         if set -q _autols_toggle_status
-            echo -e "\tautols is turned on!"
-        else
+            set --query _autols_toggle_status; and set --erase _autols_toggle_status
             echo -e "\tautols is turned off!"
+        else
+            set --query _autols_toggle_status; or set -Ux _autols_toggle_status 
+            echo -e "\tautols is turned on!"
         end
         return 0
 
@@ -32,6 +34,7 @@ end
 
 function _autols::help --description "print help message for autols-toggle"
     echo "usage:"
+	echo -e "\tautols-toggle \ttoggles autols on/off"
     echo -e "\tautols-toggle on \tturn autols on"
     echo -e "\tautols-toggle off\tturn autols off"
     echo -e "autols-toggle -h | --help\t Show this help message"
