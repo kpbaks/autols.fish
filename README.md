@@ -7,12 +7,20 @@ Can be toggled on and off by using the provided helper function `autols-toggle [
 
 [![asciicast](https://asciinema.org/a/359379.svg)](https://asciinema.org/a/359379)
 
-# Installation
-## Using [Fisher](https://github.com/jorgebucaran/fisher)
+## Installation
+### Using [Fisher](https://github.com/jorgebucaran/fisher)
 ```fish
 fisher install Kristoffer-PBS/autols-fish
 ```
-
+## Configuration
+By default autols uses ```ls```. To modify the command use
+```fish
+set -U autols_command "<commandToExecute>"
+```
+for example
+```fish
+set -U autols_command "exa -laB --git --group-directories-first"
+```
 ## Inspiration
 - https://github.com/desyncr/auto-ls
 
