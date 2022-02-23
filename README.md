@@ -21,7 +21,6 @@ for example
 ```fish
 set -U autols_command exa -laB --git --group-directories-first
 ```
-[![asciicast](https://asciinema.org/a/BsBy3bbKonqVfkJv4MCJBOiZ8.svg)](https://asciinema.org/a/BsBy3bbKonqVfkJv4MCJBOiZ8)
 ## Inspiration
 - https://github.com/desyncr/auto-ls
 
