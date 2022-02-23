@@ -33,13 +33,14 @@ function autols-toggle --description "toggle autols"
 end
 
 function _autols::help --description "print help message for autols-toggle"
-    echo "usage:"
-	echo -e "\tautols-toggle \ttoggles autols on/off"
-    echo -e "\tautols-toggle on \tturn autols on"
-    echo -e "\tautols-toggle off\tturn autols off"
-    echo -e "autols-toggle -h | --help\t Show this help message"
 
-    # set -l author "Kristoffer Sørensen" 
+echo -e "usage:
+\tautols-toggle\t\t\ttoggle autols on/off
+\t\t\ton \t\tturn autols on
+\t\t\toff\t\tturn autols off
+\t\t\t-h | --help\tShow this help message"
+
+	# set -l author "Kristoffer Sørensen" 
     # set -l repo "https://github.com/Kristoffer-PBS/autols-fish"
     # echo -e "autols-fish - a small plugin that automatically invokes ls whenever you enter a new directory.\n"
     # echo -e "author:\t$author\n"
