@@ -1,30 +1,48 @@
-# autols-fish
-Automatically run ls whenever your enter a different directory.
+# autols.fish
+Automatically run ls whenever you enter a different directory. Add ignore rules to ignore certain directories. Works with fish built-in `cd`, `cdh` and shell agnostic programs such as [zoxide](https://github.com/ajeetdsouza/zoxide).
 
-works with fish built-in `cd`, `cdh` and shell agnostic programs such as [zoxide](https://github.com/ajeetdsouza/zoxide).
+<!-- Can be toggled on and off by using the provided helper function `autols-toggle [on|off]` -->
 
-Can be toggled on and off by using the provided helper function `autols-toggle [on|off]`
+<!-- TODO: update video -->
+<!-- [![asciicast](https://asciinema.org/a/359379.svg)](https://asciinema.org/a/359379) -->
 
-[![asciicast](https://asciinema.org/a/359379.svg)](https://asciinema.org/a/359379)
+## Installation
 
-# Installation
-## Using [Fisher](https://github.com/jorgebucaran/fisher)
+### Using [Fisher](https://github.com/jorgebucaran/fisher)
 ```fish
-fisher install Kristoffer-PBS/autols-fish
+fisher install kpbaks/autols.fish
 ```
+
+## Usage
+
+`autols.fish` is enabled by default. You can disable it by using the provided function `autols`.
+
+```fish
+autols off # disable autols
+autols on  # enable autols
+autols status # check if autols is enabled
+autols toggle # toggle autols
+```
+
+### Ignore rules
+
+You can add ignore rules to ignore certain directories. This is useful if you have a directory with a lot of files, and you don't want to run `ls` every time you enter it. Ignore rules are edited using the `autols` function.
+
+```fish
+autols ignore add <directory> # add a directory to the ignore list
+autols ignore "*/build/" # Ignore all directories named build
+autols ignore rm <directory> # remove a directory from the ignore list
+autols ignore list # list all ignored directories
+autols ignore clear # clear all ignored directories
+```
+
+
+See `autols --help` for more information.
 
 ## Inspiration
 - https://github.com/desyncr/auto-ls
 
-## TODO
-- ~~The fish function `functions/_autols.fish` has to be executed at least once due to fish using lazyloading to load user functions.
-Currently I have accounted for this by invoking the file in `conf.d/autols_initialize.fish`. I am not fully versed in fish script yet,
-but after looking at the documentation, about which files are sourced and executed upon [shell startup](https://fishshell.com/docs/current/index.html#initialization-files), this was the only way i found to do it. I think this implementation is *"doing it the quick and dirty way"*, and I
-do not prefer it, so if someone know of there is a better way please send a pull request!~~
-- ~~The plugin works currently by being invoked each time the fish builtin variable `$PWD` is invoked, this means that - when toggled on - that
-it is called when starting the interactive shell. This conflicts with the users `fish_greeting.fish`. In a previous implementation I used an
-[event handler](https://fishshell.com/docs/current/cmds/function), that was invoked each time the fish builtin event `fish_postexec` is emitted, and then checked if current directory had been updated since the last emitted event. I might be able to fix this "bug", by using this implementation route instead
-but I have not yet tried it.~~
-- ~~Add asciinema gif, to show functionality of plugin.~~
-- Add rules for which directories autols should be applicable for e.g. only invoke in directories containing `.git` 
-- Add a "How it works" section to the readme
+
+## How it works
+
+`fish` has an event system that allows you to run functions when certain events occur. In this case, we want to run `ls` whenever we enter a new directory. To do this, we listen to the `fish_postexec` event, and check if the current directory is different from the previous one. If it is, we run `ls` and update the previous directory.

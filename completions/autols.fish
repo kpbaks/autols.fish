@@ -3,15 +3,19 @@ set -l c complete -c autols
 $c -f # Disable file completion
 
 $c -s h -l help
-set -l subcommands on off status toggle add list ls remove rm
+set -l subcommands on off status toggle ignore
 
 set -l cond "not __fish_seen_subcommand_from $subcommands"
-$c -n $cond -a on
-$c -n $cond -a off
-$c -n $cond -a status
-$c -n $cond -a toggle
-$c -n $cond -a add
-$c -n $cond -a list
-$c -n $cond -a ls
-$c -n $cond -a remove
-$c -n $cond -a rm
+$c -n "not __fish_seen_subcommand_from $subcommands" -a on
+$c -n "not __fish_seen_subcommand_from $subcommands" -a off
+$c -n "not __fish_seen_subcommand_from $subcommands" -a status
+$c -n "not __fish_seen_subcommand_from $subcommands" -a toggle
+$c -n "not __fish_seen_subcommand_from $subcommands" -a ignore
+
+# FIX: why does the above arguments show up when `autols ignore |`
+set -l ignore_subcommands add list ls remove rm
+set -l cond "__fish_seen_subcommand_from ignore; and not __fish_seen_subcommand_from $ignore_subcommands"
+$c -n "__fish_seen_subcommand_from ignore; and not __fish_seen_subcommand_from $ignore_subcommands" -a add
+$c -n "__fish_seen_subcommand_from ignore; and not __fish_seen_subcommand_from $ignore_subcommands" -a "ls list"
+# TODO: show the ignored list for `autols ignore remove`
+$c -n "__fish_seen_subcommand_from ignore; and not __fish_seen_subcommand_from $ignore_subcommands" -a "rm remove"
