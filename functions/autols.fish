@@ -115,6 +115,7 @@ function autols -d "Interact with autols.fish"
                     set --append AUTOLS_FISH_IGNORED_DIRS $dir
                 end
             case remove rm
+                # TODO: instead of having to specify the full path/pattern, use an index instead
                 if test (count $argv) -lt 3
                     printf "%serror%s: remove requires at least one argument\n" $red $reset >&2
                     return 2
