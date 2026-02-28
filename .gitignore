@@ -1,0 +1,4 @@
+# Nix
+/.pre-commit-config.yaml
+/.direnv/
+/result
