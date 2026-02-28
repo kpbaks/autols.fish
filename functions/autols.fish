@@ -55,7 +55,7 @@ function autols -d "Interact with autols.fish"
     end
 
     set --query AUTOLS_FISH_IGNORED_DIRS; or set --universal AUTOLS_FISH_IGNORED_DIRS # Initialize the variable if it does not exist
-    
+
     set -l retv 0
 
     switch $argv[1]
@@ -100,45 +100,45 @@ function autols -d "Interact with autols.fish"
             end
 
             switch $argv[2]
-            case add
-                if test (count $argv) -lt 3
-                    printf "%serror%s: add requires at least one argument\n" $red $reset >&2
-                    return 2
-                end
+                case add
+                    if test (count $argv) -lt 3
+                        printf "%serror%s: add requires at least one argument\n" $red $reset >&2
+                        return 2
+                    end
 
-                for dir in $argv[3..]
-                    if contains -- $dir $AUTOLS_FISH_IGNORED_DIRS
-                        printf "%swarn%s: %s is already ignored\n" $yellow $reset $dir >&2
-                        set retv 1
-                        continue
+                    for dir in $argv[3..]
+                        if contains -- $dir $AUTOLS_FISH_IGNORED_DIRS
+                            printf "%swarn%s: %s is already ignored\n" $yellow $reset $dir >&2
+                            set retv 1
+                            continue
+                        end
+                        set --append AUTOLS_FISH_IGNORED_DIRS $dir
                     end
-                    set --append AUTOLS_FISH_IGNORED_DIRS $dir
-                end
-            case remove rm
-                # TODO: instead of having to specify the full path/pattern, use an index instead
-                if test (count $argv) -lt 3
-                    printf "%serror%s: remove requires at least one argument\n" $red $reset >&2
-                    return 2
-                end
-                for dir in $argv[3..]
-                    if contains --index -- $dir $AUTOLS_FISH_IGNORED_DIRS | read index
-                        set --erase AUTOLS_FISH_IGNORED_DIRS[$index]
-                    else
-                        printf "%swarn%s: %s is not ignored\n" $yellow $reset $dir >&2
-                        set retv 1
+                case remove rm
+                    # TODO: instead of having to specify the full path/pattern, use an index instead
+                    if test (count $argv) -lt 3
+                        printf "%serror%s: remove requires at least one argument\n" $red $reset >&2
+                        return 2
                     end
-                end
-            case list ls
-                if test (count $AUTOLS_FISH_IGNORED_DIRS) -gt 0
-                    printf "%s\n" $AUTOLS_FISH_IGNORED_DIRS
-                end
-            case clear
-                for i in (seq (count $AUTOLS_FISH_IGNORED_DIRS))
-                    set --erase AUTOLS_FISH_IGNORED_DIRS[1]
-                end
-            case "*"
-                printf "%serror%s: unknown subcommand %s\n" $red $reset $argv[2] >&2
-        end
+                    for dir in $argv[3..]
+                        if contains --index -- $dir $AUTOLS_FISH_IGNORED_DIRS | read index
+                            set --erase AUTOLS_FISH_IGNORED_DIRS[$index]
+                        else
+                            printf "%swarn%s: %s is not ignored\n" $yellow $reset $dir >&2
+                            set retv 1
+                        end
+                    end
+                case list ls
+                    if test (count $AUTOLS_FISH_IGNORED_DIRS) -gt 0
+                        printf "%s\n" $AUTOLS_FISH_IGNORED_DIRS
+                    end
+                case clear
+                    for i in (seq (count $AUTOLS_FISH_IGNORED_DIRS))
+                        set --erase AUTOLS_FISH_IGNORED_DIRS[1]
+                    end
+                case "*"
+                    printf "%serror%s: unknown subcommand %s\n" $red $reset $argv[2] >&2
+            end
         case "*"
             printf "%serror%s: unknown subcommand %s\n" $red $reset $argv[1] >&2
     end

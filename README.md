@@ -1,4 +1,5 @@
 # autols.fish
+
 Automatically run ls whenever you enter a different directory. Add ignore rules to ignore certain directories. Works with fish built-in `cd`, `cdh` and shell agnostic programs such as [zoxide](https://github.com/ajeetdsouza/zoxide).
 
 <!-- Can be toggled on and off by using the provided helper function `autols-toggle [on|off]` -->
@@ -9,6 +10,7 @@ Automatically run ls whenever you enter a different directory. Add ignore rules 
 ## Installation
 
 ### Using [Fisher](https://github.com/jorgebucaran/fisher)
+
 ```fish
 fisher install kpbaks/autols.fish
 ```
@@ -36,12 +38,11 @@ autols ignore list # list all ignored directories
 autols ignore clear # clear all ignored directories
 ```
 
-
 See `autols --help` for more information.
 
 ## Inspiration
-- https://github.com/desyncr/auto-ls
 
+- <https://github.com/desyncr/auto-ls>
 
 ## How it works
 
